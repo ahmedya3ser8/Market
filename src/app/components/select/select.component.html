@@ -1,0 +1,7 @@
+<label class="my-1 block text-[20px]">{{title}}:</label>
+<select class="w-full border border-solid border-[#ccc] p-2 outline-none appearance-none" (change)="detectChanges($event)" >
+  <option value="all" selected>All</option>
+  @for (item of data; track $index) {
+    <option [value]="item"> {{item}} </option>
+  }
+</select>

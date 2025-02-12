@@ -1,0 +1,23 @@
+<section class="w-[90%] mt-20 mx-auto h-[500px]">
+  <button class="bg-[#157347] text-white p-3 rounded-lg" (click)="backTo()" >Back To Products Page</button>
+  <div class="grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-5 mt-5">
+    @if (!loading) {
+      <div class="image">
+        <img [src]="product.image" class="w-full max-h-[400px]" alt="product-image" />
+      </div>
+      <div class="content">
+        <ul>
+          <li class="my-5 text-[22px]"> <strong>title :</strong> {{product.title}} </li>
+          <li class="my-5 text-[22px]"> <strong>Category :</strong> {{product.category}} </li>
+          <li class="my-5 text-[22px]"> <strong>Description :</strong> {{product.description}} </li>
+          <li class="my-5 text-[22px]"> <strong>Rate :</strong> {{product.rating.rate}} </li>
+          <li class="my-5 text-[22px]"> <strong>Count :</strong> {{product.rating.count}} </li>
+          <li class="my-5 text-[22px]"> <strong>Price :</strong> {{product.price}} LE </li>
+        </ul>
+      </div>
+    }
+  </div>
+  @if (loading) {
+    <app-spinner></app-spinner>
+  }
+</section>

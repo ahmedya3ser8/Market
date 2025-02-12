@@ -1,0 +1,15 @@
+<section class="py-5">
+  <div class="my-2 w-1/4">
+    <app-select [data]="categories" [title]="'Categories'" (itemEvent)="filterCategories($event)"></app-select>
+  </div>
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 py-12">
+    @if (!loading) {
+      @for (product of products; track product.id) {
+        <app-product [product]="product" (item)="addToCart($event)"></app-product>
+      }
+    }
+  </div>
+  @if (loading) {
+    <app-spinner></app-spinner>
+  }
+</section>

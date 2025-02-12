@@ -1,0 +1,19 @@
+<div class="card w-full no-underline text-[#333] p-[15px] rounded-[10px] transition-all duration-700 shadow-[0px_2px_5px_#ca25104d] hover:scale-105">
+  <img (click)="goToDetails(product.id)" [src]="product.image" class="w-full h-[200px] rounded-[10px] cursor-pointer" alt="product-image" />
+  <div class="card-body">
+    <h3 class="bg-[#eee] py-[5px] px-[15px] mt-[10px] h-[75px] text-[18px] overflow-hidden"> {{product.title.split(' ', 5).join(' ')}} </h3>
+    <p class="my-[15px] h-[100px] py-[5px] px-[15px] overflow-hidden"> {{product.description}} </p>
+  </div>
+  <div class="flex justify-between items-center mx-3 mb-2">
+    @if (!clicked) {
+      <button (click)="clicked = true"  class="bg-[#157347] text-white p-2 rounded-md">add to cart</button>
+    }
+    @if (clicked) {
+      <div class="w-1/2 flex gap-3">
+        <input [(ngModel)]="amount" type="number" class="w-full border border-solid border-black rounded-[6px] py-[3px] px-[6px] outline-none" />
+        <button (click)="add(); clicked = false" class="bg-[#157347] text-white p-2 rounded-md">add</button>
+      </div>
+    }
+    <div class="bg-[#f1b4b4] rounded-[30px] py-[4px] px-[8px]"> {{product.price}} L.E </div>
+  </div>
+</div>

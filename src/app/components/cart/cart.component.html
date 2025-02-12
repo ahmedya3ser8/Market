@@ -1,0 +1,55 @@
+<section class="p-8 border border-solid border-[#ccc] my-12">
+  <h1 class="text-[35px] text-[#950b0b]">Shopping Cart</h1>
+  <div class="flex justify-between items-center mt-1 mb-4">
+    <p>You have <strong class="text-[#950b0b]"> {{cartProducts.length}} </strong> item in your cart </p>
+    <button class="text-[#950b0b] bg-gray-200 transition-all duration-700 hover:bg-gray-400 p-2" (click)="clearCart()" >Clear Shopping Cart</button>
+  </div>
+  <table class="w-full">
+    <thead>
+      <tr class="text-left">
+        <th class="px-6 py-4"></th>
+        <th class="px-6 py-4">Name</th>
+        <th class="px-6 py-4">Price</th>
+        <th class="px-6 py-4">Quantity</th>
+        <th class="px-6 py-4">Total</th>
+        <th class="px-6 py-4"></th>
+      </tr>
+    </thead>
+    <tbody class="border-b-2 border-solid border-b-black">
+      @for (product of cartProducts; track product.item.id) {
+        <tr class="odd:bg-white even:bg-gray-50 border-b border-b-gray-200 text-center">
+          <td class="px-6 py-4">
+            <img [src]="product.item.image" class="w-20 h-20 rounded-lg" alt="product image">
+          </td>
+          <td class="px-6 py-4"> {{product.item.title}} </td>
+          <td class="px-6 py-4"> {{product.item.price}} L.E</td>
+          <td class="px-6 py-4 w-1/4">
+            <div class="flex justify-between items-center gap-5">
+              <button class="bg-black text-white py-[6px] px-[10px] rounded-lg" (click)="incrementAmount($index)">+</button>
+              <input type="number" (change)="detectChange()" [(ngModel)]="product.quantity" class="w-2/3 text-center bg-white py-[6px] px-[10px] outline-none border border-solid border-[#ccc] rounded-lg" name="amountInput" />
+              <button class="bg-black text-white py-[6px] px-[10px] rounded-lg" (click)="decrementAmount($index)">-</button>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm"> {{(product.item.price * product.quantity).toFixed(2)}} L.E</td>
+          <td class="px-6 py-4">
+            <button class="bg-red-500 text-white py-2 px-3 rounded-lg" (click)="deleteProduct($index)" >Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2" class="font-medium text-sm text-end">Total : <strong> {{total.toFixed(2)}} </strong> L.E</td>
+        <td class="px-6 py-3 font-bold">
+          <button class="p-1 rounded-lg text-white bg-green-600 text-sm" (click)="addCartProducts()" >Order Now</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  @if (success) {
+    <div class="alert bg-green-200 text-gray-600 p-4 rounded-md"><strong>Well done!</strong> Your Order is Successfully Send</div>
+  }
+</section>
